@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +30,8 @@ public class SignUpActivity extends AppCompatActivity
     private String password;
     private TextInputLayout accountLayout;
     private TextInputLayout passwordLayout;
-    private EditText edit_account;
-    private EditText edit_password;
+    private EditText accountEdit;
+    private EditText passwordEdit;
     private Button signUpBtn;
     private FirebaseUser user;
 
@@ -48,8 +49,9 @@ public class SignUpActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         accountLayout = (TextInputLayout)findViewById(R.id.account_layout);
         passwordLayout = (TextInputLayout)findViewById(R.id.password_layout);
-        edit_account = (EditText)findViewById(R.id.edit_account);
-        edit_password = (EditText)findViewById(R.id.edit_password);
+        accountEdit = (EditText)findViewById(R.id.edit_account);
+        passwordEdit = (EditText)findViewById(R.id.edit_password);
+        passwordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
         passwordLayout.setErrorEnabled(true);
         accountLayout.setErrorEnabled(true);
         signUpBtn = (Button)findViewById(R.id.button_sign_up);
@@ -58,8 +60,8 @@ public class SignUpActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                account = edit_account.getText().toString();
-                password = edit_password.getText().toString();
+                account = accountEdit.getText().toString();
+                password = passwordEdit.getText().toString();
                 if(TextUtils.isEmpty(account))
                 {
                     accountLayout.setError(getString(R.string.plz_input_accout));

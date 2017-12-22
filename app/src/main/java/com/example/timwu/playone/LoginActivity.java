@@ -2,9 +2,9 @@ package com.example.timwu.playone;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String account;
     private String password;
-    private EditText editAccount;
-    private EditText editPassword;
+    private EditText accountEdit;
+    private EditText passwordEdit;
     private TextInputLayout accoutLayout;
     private TextInputLayout passwordLayout;
     private Button loginBtn;
@@ -47,8 +47,9 @@ public class LoginActivity extends AppCompatActivity
     {
         mAuth = FirebaseAuth.getInstance();
 
-        editAccount = (EditText) findViewById(R.id.edit_account);
-        editPassword = (EditText) findViewById(R.id.edit_password);
+        accountEdit = (EditText) findViewById(R.id.edit_account);
+        passwordEdit = (EditText) findViewById(R.id.edit_password);
+        passwordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         accoutLayout = (TextInputLayout) findViewById(R.id.account_layout);
         passwordLayout = (TextInputLayout) findViewById(R.id.password_layout);
@@ -62,8 +63,8 @@ public class LoginActivity extends AppCompatActivity
         {
             @Override
             public void onClick(View v) {
-                String account = editAccount.getText().toString();
-                String password = editPassword.getText().toString();
+                account = accountEdit.getText().toString();
+                password = passwordEdit.getText().toString();
 
                 //帳號為空
                 if(TextUtils.isEmpty(account))
@@ -82,9 +83,6 @@ public class LoginActivity extends AppCompatActivity
                 accoutLayout.setError("");
                 passwordLayout.setError("");
 
-                Log.d("555555","account = " + account);
-                Log.d("555555","password = " + password);
-
                 mAuth.signInWithEmailAndPassword(account, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>()
                         {
@@ -94,7 +92,6 @@ public class LoginActivity extends AppCompatActivity
 
                                 if (task.isSuccessful())
                                 {
-                                    Log.d("5555555","successful");
                                     Toast.makeText(LoginActivity.this, R.string.login_success, Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent();
@@ -104,8 +101,6 @@ public class LoginActivity extends AppCompatActivity
                                 }
                                 else
                                 {
-                                    Log.d("5555555","failure = " + task.getException().getMessage());
-
                                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }

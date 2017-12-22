@@ -15,8 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity
 {
-    private Button button_Login = null;
-    private Button button_Sign_Up = null;
+    private Button loginBtn = null;
+    private Button signUpBtn = null;
     private FirebaseAuth mAuth;
 
    @Override
@@ -25,8 +25,8 @@ public class HomeActivity extends AppCompatActivity
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_home);
 
-       button_Login = (Button)findViewById(R.id.home_login);
-       button_Sign_Up = (Button)findViewById(R.id.home_sing_up);
+       loginBtn = (Button)findViewById(R.id.home_login);
+       signUpBtn = (Button)findViewById(R.id.home_sing_up);
 
        mAuth = FirebaseAuth.getInstance();
        FirebaseUser user = mAuth.getCurrentUser();
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity
        if(user == null)
        {
 
-           button_Login.setOnClickListener(new View.OnClickListener()
+           loginBtn.setOnClickListener(new View.OnClickListener()
            {
                @Override
                public void onClick(View v) {
@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity
 
                }
            });
-           button_Sign_Up.setOnClickListener(new View.OnClickListener()
+           signUpBtn.setOnClickListener(new View.OnClickListener()
            {
                @Override
                public void onClick(View v) {
