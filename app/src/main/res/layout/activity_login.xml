@@ -39,4 +39,14 @@
         android:id="@+id/button_login"
         android:layout_below="@+id/password_layout"
         android:layout_centerHorizontal="true" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/button_fb_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_login"
+        android:layout_alignStart="@+id/button_login"
+        android:layout_below="@+id/button_login"
+        android:layout_marginTop="31dp"
+        android:text="FB Login" />
 </RelativeLayout>

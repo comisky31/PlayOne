@@ -11,11 +11,11 @@
         >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="212742772606301" />
+            android:value="212742772606301"/>
         <!-- FB Share ex:photo、video、webLink-->
         <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider300570297058014"
+            android:authorities="com.facebook.app.FacebookContentProvider212742772606301"
             android:exported="true" />
 
         <activity
